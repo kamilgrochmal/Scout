@@ -7,6 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Ardalis.GuardClauses" Version="3.3.0" />
+    </ItemGroup>
+    
+    
+    <ItemGroup>
       <ProjectReference Include="..\Scout.Shared.Abstractions\Scout.Shared.Abstractions.csproj" />
     </ItemGroup>
 

@@ -4,6 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Scout.Application.Common.Services;
 using Scout.Domain.Common.Entities;
 using Scout.Domain.Common.Enums;
+using Scout.Domain.ContactPersons.Entities;
+using Scout.Domain.LeaseContracts.Entities;
+using Scout.Domain.ObjectKeepers.Entities;
+using Scout.Domain.ObjectOwners.Entities;
+using Scout.Domain.ScoutObjects.Entities;
 
 namespace Scout.Persistence;
 
@@ -30,6 +35,13 @@ public class ScoutDbContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
+    
+    
+    public DbSet<ContactPerson> ContactPersons { get; set; }
+    public DbSet<ObjectKeeper> ObjectKeepers { get; set; }
+    public DbSet<ObjectOwner> ObjectOwners { get; set; }
+    public DbSet<ScoutObject> ScoutObjects { get; set; }
+    public DbSet<LeaseContract> LeaseContracts { get; set; }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
