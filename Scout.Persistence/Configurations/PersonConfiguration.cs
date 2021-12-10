@@ -8,16 +8,14 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
-        
+
         builder.OwnsOne(a => a.PhoneNumberOne)
             .Property(a => a.Number)
-            .HasColumnName("FirstPhoneNumber")
-            .IsRequired();
-        
+            .HasColumnName("FirstPhoneNumber");
+
 
         builder.OwnsOne(a => a.Email)
             .Property(a => a.EmailAddress)
-            .HasColumnName("Email")
-            .IsRequired();
+            .HasColumnName("Email");
     }
 }

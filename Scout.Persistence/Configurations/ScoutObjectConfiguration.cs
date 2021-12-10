@@ -18,8 +18,7 @@ public class ScoutObjectConfiguration : IEntityTypeConfiguration<ScoutObject>
 
         builder.OwnsOne(a => a.Address)
             .Property(a => a.City)
-            .HasColumnName("City")
-            .IsRequired();
+            .HasColumnName("City");
         
         builder.OwnsOne(a => a.Address)
             .Property(a => a.Street)
@@ -36,16 +35,14 @@ public class ScoutObjectConfiguration : IEntityTypeConfiguration<ScoutObject>
         // --- Address Configuration --- //
         
         // --- WGS Geolocalization Configuration --- //
-        
+
         builder.OwnsOne(a => a.WgsGeoLocalization)
             .Property(a => a.Latitude)
-            .HasColumnName("Latitude")
-            .IsRequired();
-        
+            .HasColumnName("Latitude");
+
         builder.OwnsOne(a => a.WgsGeoLocalization)
             .Property(a => a.Longitude)
-            .HasColumnName("Longitude")
-            .IsRequired();
+            .HasColumnName("Longitude");
         
         builder.OwnsOne(a => a.WgsGeoLocalization)
             .Property(a => a.TerrainHeight)
@@ -88,8 +85,7 @@ public class ScoutObjectConfiguration : IEntityTypeConfiguration<ScoutObject>
 
         builder.OwnsOne(a => a.IpAddress)
             .Property(a => a.Value)
-            .HasColumnName("IpAddress")
-            .IsRequired();
+            .HasColumnName("IpAddress");
 
 
     }

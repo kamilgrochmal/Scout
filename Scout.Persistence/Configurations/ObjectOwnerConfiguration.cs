@@ -13,11 +13,10 @@ public class ObjectOwnerConfiguration : IEntityTypeConfiguration<ObjectOwner>
         builder.OwnsOne(a => a.Address)
             .Property(a => a.PostalCode)
             .HasColumnName("PostalCode");
-        
+
         builder.OwnsOne(a => a.Address)
             .Property(a => a.City)
-            .HasColumnName("City")
-            .IsRequired();
+            .HasColumnName("City");
         
         builder.OwnsOne(a => a.Address)
             .Property(a => a.Street)

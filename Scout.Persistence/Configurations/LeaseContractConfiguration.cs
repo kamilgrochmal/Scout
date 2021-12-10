@@ -10,11 +10,10 @@ public class LeaseContractConfiguration : IEntityTypeConfiguration<LeaseContract
     {
         // --- Contract Date --- //
 
-        
+
         builder.OwnsOne(a => a.ContractDate)
             .Property(a => a.ContractConclusionDate)
-            .HasColumnName("ContractConclusionDate")
-            .IsRequired();
+            .HasColumnName("ContractConclusionDate");
 
         builder.OwnsOne(a => a.ContractDate)
             .Property(a => a.ContractValidFrom)
@@ -33,8 +32,7 @@ public class LeaseContractConfiguration : IEntityTypeConfiguration<LeaseContract
 
         builder.OwnsOne(a => a.Rent)
             .Property(a => a.Value)
-            .HasColumnName("Rent")
-            .IsRequired();
+            .HasColumnName("Rent");
 
         // --- Money --- //
 

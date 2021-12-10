@@ -8,10 +8,9 @@ public class ObjectKeeperConfiguration : IEntityTypeConfiguration<ObjectKeeper>
 {
     public void Configure(EntityTypeBuilder<ObjectKeeper> builder)
     {
-       
+
         builder.OwnsOne(a => a.PhoneNumberToPickUpTheKeys)
             .Property(a => a.Number)
-            .HasColumnName("PhoneNumberToPickUpTheKeys")
-            .IsRequired();
+            .HasColumnName("PhoneNumberToPickUpTheKeys");
     }
 }
