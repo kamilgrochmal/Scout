@@ -5,15 +5,28 @@ using Scout.Domain.ScoutObjects.Entities;
 
 namespace Scout.Domain.ContactPersons.Entities;
 
-public class ContactPerson : AuditableEntity
+public class ContactPerson
 {
-    public long ScoutObjectId { get; set; }
-    public ScoutObject ScoutObject { get; set; }
+    private ScoutObject _scoutObject;
 
-    public long PersonId { get; set; }
-    public Person Person { get; set; }
+    private Person _person;
 
-    public string Duty { get; set; }
+    private string _duty;
 
-    public DepartmentType Department { get; set; }
+    private DepartmentType _department;
+
+    private ContactPerson()
+    {
+        
+    }
+    
+    internal ContactPerson(ScoutObject scoutObject, Person person, string duty, DepartmentType department)
+    {
+        _scoutObject = scoutObject;
+        _person = person;
+        _duty = duty;
+        _department = department;
+    }
+    
+    //Should there be any methods? if yes then what for example? 
 }
