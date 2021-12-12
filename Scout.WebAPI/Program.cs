@@ -5,7 +5,7 @@ using Scout.Application;
 using Scout.Application.Common.Services;
 using Scout.Infrastructure;
 using Scout.Infrastructure.Common.UserServices;
-using Scout.Persistence;
+using Scout.Infrastructure.EF;
 using Scout.WebAPI.Extensions;
 using Scout.WebAPI.Filters;
 using Serilog;

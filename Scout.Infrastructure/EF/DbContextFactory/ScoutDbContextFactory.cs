@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Scout.Persistence.DbContextFactory;
+namespace Scout.Infrastructure.EF.DbContextFactory;
 
 public class ScoutDbContextFactory : DesignTimeDbContextFactoryBase<ScoutDbContext>
 {

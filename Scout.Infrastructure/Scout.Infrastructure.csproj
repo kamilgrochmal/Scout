@@ -21,5 +21,9 @@
       <ProjectReference Include="..\Scout.Application\Scout.Application.csproj" />
       <ProjectReference Include="..\Scout.Persistence\Scout.Persistence.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="EF\Configurations" />
+    </ItemGroup>
 
 </Project>

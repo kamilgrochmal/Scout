@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Scout.Application.Common.Services;
 using Scout.Domain.Common.Entities;
 using Scout.Domain.Common.Enums;
@@ -10,7 +8,7 @@ using Scout.Domain.ObjectKeepers.Entities;
 using Scout.Domain.ObjectOwners.Entities;
 using Scout.Domain.ScoutObjects.Entities;
 
-namespace Scout.Persistence;
+namespace Scout.Infrastructure.EF;
 
 public class ScoutDbContext : DbContext
 {
