@@ -7,6 +7,7 @@ namespace Scout.Domain.ContactPersons.Entities;
 
 public class ContactPerson
 {
+    public long Id { get; private set; }
     private ScoutObject _scoutObject;
 
     private Person _person;

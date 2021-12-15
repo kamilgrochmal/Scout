@@ -5,15 +5,25 @@ using Scout.Domain.ValueObjects;
 
 namespace Scout.Domain.ObjectOwners.Entities;
 
-public class ObjectOwner : AuditableEntity
+public class ObjectOwner 
 {
-    public string CompanyName { get; set; }
-    public Address Address { get; set; }
-    public string UrlSite { get; set; }
-    
-    public Person Person { get; set; }
-    public long PersonId { get; set; }
+    public long Id { get; private set; }
+    private string _companyName; 
+    private Address _address; 
+    private string _urlSite; 
+    private Person _person; 
+    private List<ScoutObject> _scoutObjects;
 
-    public ICollection<ScoutObject> ScoutObject { get; set; }
-
+    private ObjectOwner()
+    {
+        
+    }
+    internal ObjectOwner(string companyName, Address address, string urlSite, Person person, List<ScoutObject> scoutObjects)
+    {
+        _companyName = companyName;
+        _address = address;
+        _urlSite = urlSite;
+        _person = person;
+        _scoutObjects = scoutObjects;
+    }
 }

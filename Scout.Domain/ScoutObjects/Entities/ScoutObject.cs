@@ -25,15 +25,16 @@ public class ScoutObject : AggregateRoot<long>
     private LeaseContract _leaseContract;
     private ObjectOwner _objectOwner;
 
-    private ICollection<ContactPerson> _contactPersons = new List<ContactPerson>();
-    private ICollection<ObjectKeeper> _objectKeepers = new List<ObjectKeeper>();
+    private List<ContactPerson> _contactPersons = new();
+    private List<ObjectKeeper> _objectKeepers = new();
 
     private ScoutObject() // for EF Core purposes
     {
     }
 
     internal ScoutObject(ScoutObjectName name, Address address, WGSGeoLocalization wgsGeoLocalization,
-        ObjectSpecification objectSpecification, ObjectStatus objectStatus, ObjectType objectType, IpAddress ipAddress, string urlToObject)
+        ObjectSpecification objectSpecification, ObjectStatus objectStatus, ObjectType objectType, IpAddress ipAddress,
+        string urlToObject)
     {
         _name = name;
         _address = address;
@@ -45,12 +46,17 @@ public class ScoutObject : AggregateRoot<long>
         _urlToObject = urlToObject;
     }
 
+    public static ScoutObject Create(ScoutObjectName name, Address address, WGSGeoLocalization wgsGeoLocalization,
+        ObjectSpecification objectSpecification, ObjectStatus objectStatus, ObjectType objectType, IpAddress ipAddress, string urlToObject) =>
+        new(name, address, wgsGeoLocalization,objectSpecification, objectStatus, objectType, ipAddress, urlToObject);
+
+
     public void AddObjectOwner(ObjectOwner objectOwner)
     {
         _objectOwner = objectOwner;
         AddDomainEvent(new AddedObjectOwner(_objectOwner.Id, this.Id));
     }
-    
+
     public void AddLeaseContract(LeaseContract leaseContract)
     {
         _leaseContract = leaseContract;
@@ -60,21 +66,16 @@ public class ScoutObject : AggregateRoot<long>
     public void AddContactPerson(ContactPerson contactPerson)
     {
         // there could be rule that checks if for example ScoutObject doesn't have more than 3 ContactPersons
-        
+
         _contactPersons.Add(contactPerson);
         AddDomainEvent(new AddedContactPerson(contactPerson.Id, this.Id));
-        
     }
-    
+
     public void AddObjectKeeper(ObjectKeeper objectKeeper)
     {
         // there could be rule that checks if for example ScoutObject doesn't have more than 3 ObjectKeepers
-        
+
         _objectKeepers.Add(objectKeeper);
         AddDomainEvent(new AddedObjectKeeper(objectKeeper.Id, this.Id));
-        
     }
-    
-    
-    
 }

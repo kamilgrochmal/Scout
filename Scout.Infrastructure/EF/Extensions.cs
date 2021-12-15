@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Scout.Domain.Repositories;
+using Scout.Infrastructure.EF.Repositories;
 
 namespace Scout.Infrastructure.EF;
 
@@ -9,6 +11,8 @@ public static class Extensions
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
+        
+        
         services.AddDbContext<ScoutDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DatabaseConnection"),
@@ -19,6 +23,8 @@ public static class Extensions
                 .EnableSensitiveDataLogging();
 
         });
+
+        services.AddScoped<IScoutObjectRepository, ScoutObjectRepository>();
         
         return services;
     }

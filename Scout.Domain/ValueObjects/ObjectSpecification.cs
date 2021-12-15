@@ -5,52 +5,36 @@ namespace Scout.Domain.ValueObjects;
 
 public record ObjectSpecification
 {
-    public double ObjectHeight { get; }
+    public double? ObjectHeight { get; }
     public PowerSupplyType? PowerSupplyType { get; }
     public CoolingType? CoolingType { get; }
-    public double? FirstAntennaSetHeight { get; }
-    public double? SecondAntennaSetHeight { get; }
-    public double? ThirdAntennaSetHeight { get; }
+    public double? AntennaSetHeight { get; }
     public string Others { get; }
 
-    private ObjectSpecification(double? firstAntennaSetHeight, double? secondAntennaSetHeight,
-        double? thirdAntennaSetHeight, CoolingType? coolingType, PowerSupplyType? powerSupplyType, double objectHeight,
+    private ObjectSpecification(double? antennaSetHeight, CoolingType? coolingType, PowerSupplyType? powerSupplyType, double? objectHeight,
         string others)
     {
         Others = others;
-        ThirdAntennaSetHeight = thirdAntennaSetHeight;
-        SecondAntennaSetHeight = secondAntennaSetHeight;
-        FirstAntennaSetHeight = firstAntennaSetHeight;
+        AntennaSetHeight = antennaSetHeight;
+     
         CoolingType = coolingType;
         PowerSupplyType = powerSupplyType;
         ObjectHeight = objectHeight;
     }
 
-    public static ObjectSpecification Create(double? firstAntennaSetHeight, double? secondAntennaSetHeight,
-        double? thirdAntennaSetHeight, CoolingType? coolingType, PowerSupplyType? powerSupplyType, double objectHeight,
+    public static ObjectSpecification Create(double? antennaSetHeight,CoolingType? coolingType, PowerSupplyType? powerSupplyType, double? objectHeight,
         string others)
     {
-        if (firstAntennaSetHeight != null)
+        if (antennaSetHeight != null)
         {
-            Guard.Against.NegativeOrZero((double)firstAntennaSetHeight, nameof(firstAntennaSetHeight));
+            Guard.Against.NegativeOrZero((double)antennaSetHeight, nameof(antennaSetHeight));
+        }
+        
+        if (objectHeight != null)
+        {
+            Guard.Against.NegativeOrZero((double)objectHeight, nameof(objectHeight));
         }
 
-        if (secondAntennaSetHeight != null)
-        {
-            Guard.Against.NegativeOrZero((double)secondAntennaSetHeight, nameof(secondAntennaSetHeight));
-        }
-
-        if (thirdAntennaSetHeight != null)
-        {
-            Guard.Against.NegativeOrZero((double)thirdAntennaSetHeight, nameof(thirdAntennaSetHeight));
-        }
-
-        // if (objectHeight != null)
-        // {
-        //     Guard.Against.NegativeOrZero((double)objectHeight, nameof(objectHeight));
-        // }
-
-        return new ObjectSpecification(firstAntennaSetHeight, secondAntennaSetHeight, thirdAntennaSetHeight,
-            coolingType, powerSupplyType, objectHeight, others);
+        return new ObjectSpecification(antennaSetHeight, coolingType, powerSupplyType, objectHeight, others);
     }
 }

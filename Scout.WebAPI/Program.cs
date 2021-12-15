@@ -19,7 +19,7 @@ builder.Services.TryAddScoped(typeof(ICurrentUserService), typeof(CurrentUserSer
 //Add services from layers
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // Add API services
 builder.Services.AddSwaggerConfig();

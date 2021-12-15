@@ -6,17 +6,24 @@ using Scout.Domain.ValueObjects;
 
 namespace Scout.Domain.Persons.Entities;
 
-public class Person : AuditableEntity
+public class Person
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public PhoneNumber PhoneNumberOne { get; set; }
-    public Email Email { get; set; }
+    public long Id { get; private set; }
+    private string _firstName;
+    private string _lastName;
+    private PhoneNumber _phoneNumberOne;
+    private Email _email;
 
-
-    public ICollection<ContactPerson> ContactPersons { get; set; } = new List<ContactPerson>();
-    public ICollection<ObjectKeeper> ObjectKeepers { get; set; } = new List<ObjectKeeper>();
-    public ICollection<ObjectOwner> ObjectOwners { get; set; } = new List<ObjectOwner>();
-
-
+    private Person()
+    {
+        
+    }
+    internal Person(string firstName, string lastName, PhoneNumber phoneNumberOne, Email email)
+    {
+        _firstName = firstName;
+        _lastName = lastName;
+        _phoneNumberOne = phoneNumberOne;
+        _email = email;
+    }
+    
 }

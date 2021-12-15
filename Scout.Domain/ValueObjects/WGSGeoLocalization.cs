@@ -23,7 +23,7 @@ public record WGSGeoLocalization
         {
             Regex regexObj = new Regex(@"^([-+]?)([\d]{1,2})(((\.)(\d+)(,)))(\s*)(([-+]?)([\d]{1,3})((\.)(\d+))?)$");
             var matchResult = regexObj.IsMatch($"{latitude}, {longitude}");
-
+        
             if (!matchResult)
                 throw new InvalidCoordinatesException();
         }

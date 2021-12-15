@@ -5,15 +5,25 @@ using Scout.Domain.ValueObjects;
 
 namespace Scout.Domain.ObjectKeepers.Entities;
 
-public class ObjectKeeper : AuditableEntity
+public class ObjectKeeper 
 {
-    public long ScoutObjectId { get; set; }
-    public ScoutObject ScoutObject { get; set; }
+    public long Id { get; private set; }
+    private ScoutObject _scoutObject; 
+    private Person _person; 
+    private string _duty; 
+    private string _placeToPickUpTheKeys; 
+    private PhoneNumber _phoneNumberToPickUpTheKeys;
 
-    public long PersonId { get; set; }
-    public Person Person { get; set; }
-    
-    public string Duty { get; set; }
-    public string PlaceToPickUpTheKeys { get; set; }
-    public PhoneNumber PhoneNumberToPickUpTheKeys { get; set; }
+    private ObjectKeeper()
+    {
+        
+    }
+    internal ObjectKeeper(ScoutObject scoutObject, Person person, string duty, string placeToPickUpTheKeys, PhoneNumber phoneNumberToPickUpTheKeys)
+    {
+        _scoutObject = scoutObject;
+        _person = person;
+        _duty = duty;
+        _placeToPickUpTheKeys = placeToPickUpTheKeys;
+        _phoneNumberToPickUpTheKeys = phoneNumberToPickUpTheKeys;
+    }
 }

@@ -10,19 +10,16 @@ public record Address
     public string City { get; }
     public string PostalCode { get; }
     public string PlotNumber { get; }
-    public string HouseNumber { get; }
 
-    private Address(string street, string postalCode, string city, string plotNumber, string houseNumber)
+    private Address(string street, string postalCode, string city, string plotNumber)
     {
         Street = street;
         PostalCode = postalCode;
         City = city;
         PlotNumber = plotNumber;
-        HouseNumber = houseNumber;
     }
 
-    public static Address Create(string street, string postalCode, string city, string plotNumber = null,
-        string houseNumber = null)
+    public static Address Create(string street, string postalCode, string city, string plotNumber = null)
     {
         if (postalCode != null)
         {
@@ -47,11 +44,8 @@ public record Address
             Guard.Against.NullOrWhiteSpace(plotNumber, nameof(plotNumber));
         }
 
-        if (houseNumber != null)
-        {
-            Guard.Against.NullOrWhiteSpace(houseNumber, nameof(houseNumber));
-        }
+     
 
-        return new Address(street, postalCode, city, plotNumber, houseNumber);
+        return new Address(street, postalCode, city, plotNumber);
     }
 }
