@@ -13,27 +13,17 @@ public class CreateScoutObjectHandler : IRequestHandler<CreateScoutObject>
     {
         _scoutObjectRepository = scoutObjectRepository;
     }
-    
+
     public async Task<Unit> Handle(CreateScoutObject request, CancellationToken cancellationToken)
     {
+        var (name, postalCode, city, street, plotNumber, objectStatus, objectType) = request;
 
-        var (name, postalCode, city, street, plotNumber,
-            latitude, longitude, terrainHeight,
-            objectHeight, antennaSetHeight, powerSupplyType, coolingType,
-            others, objectStatus, objectType, ipAddress, urlToObject) = request;
-
-        var objectName = ScoutObjectName.Create(name);
+        var objectName = new ScoutObjectName(name);
         var address = Address.Create(street, postalCode, city, plotNumber);
-        var localization = WGSGeoLocalization.Create(latitude, longitude, terrainHeight);
-        var specification = ObjectSpecification.Create(antennaSetHeight, coolingType, powerSupplyType, objectHeight, others);
-        var ip = IpAddress.Create(ipAddress);
-
-        var scoutObject = ScoutObject.Create(objectName, address, localization, specification, objectStatus, objectType,
-            ip, urlToObject);
+        var scoutObject = ScoutObject.Create(objectName, address, objectStatus, objectType);
 
         await _scoutObjectRepository.AddAsync(scoutObject);
-        
-        return Unit.Value;
 
+        return Unit.Value;
     }
 }

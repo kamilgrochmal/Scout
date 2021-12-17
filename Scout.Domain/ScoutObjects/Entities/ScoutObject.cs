@@ -1,4 +1,5 @@
-﻿using Scout.Domain.Common.Entities;
+﻿using JetBrains.Annotations;
+using Scout.Domain.Common.Entities;
 using Scout.Domain.ContactPersons.Entities;
 using Scout.Domain.LeaseContracts.Entities;
 using Scout.Domain.ObjectKeepers.Entities;
@@ -14,68 +15,30 @@ public class ScoutObject : AggregateRoot<long>
 {
     private ScoutObjectName _name;
     private Address _address;
-    private WGSGeoLocalization _wgsGeoLocalization;
-    private ObjectSpecification _objectSpecification;
-
     private ObjectStatus _objectStatus;
     private ObjectType _objectType;
-    private IpAddress _ipAddress;
-    private string _urlToObject;
-
-    private LeaseContract _leaseContract;
-    private ObjectOwner _objectOwner;
-
-    private List<ContactPerson> _contactPersons = new();
-    private List<ObjectKeeper> _objectKeepers = new();
+    private List<ObjectOwner> _objectOwners = new();
 
     private ScoutObject() // for EF Core purposes
     {
     }
 
-    internal ScoutObject(ScoutObjectName name, Address address, WGSGeoLocalization wgsGeoLocalization,
-        ObjectSpecification objectSpecification, ObjectStatus objectStatus, ObjectType objectType, IpAddress ipAddress,
-        string urlToObject)
+    internal ScoutObject(ScoutObjectName name, Address address,
+        ObjectStatus objectStatus, ObjectType objectType)
     {
         _name = name;
         _address = address;
-        _wgsGeoLocalization = wgsGeoLocalization;
-        _objectSpecification = objectSpecification;
         _objectStatus = objectStatus;
         _objectType = objectType;
-        _ipAddress = ipAddress;
-        _urlToObject = urlToObject;
     }
 
-    public static ScoutObject Create(ScoutObjectName name, Address address, WGSGeoLocalization wgsGeoLocalization,
-        ObjectSpecification objectSpecification, ObjectStatus objectStatus, ObjectType objectType, IpAddress ipAddress, string urlToObject) =>
-        new(name, address, wgsGeoLocalization,objectSpecification, objectStatus, objectType, ipAddress, urlToObject);
+    public static ScoutObject Create(ScoutObjectName name, Address address, ObjectStatus objectStatus, ObjectType objectType)
+        => new(name, address, objectStatus, objectType);
 
 
     public void AddObjectOwner(ObjectOwner objectOwner)
     {
-        _objectOwner = objectOwner;
-        AddDomainEvent(new AddedObjectOwner(_objectOwner.Id, this.Id));
-    }
-
-    public void AddLeaseContract(LeaseContract leaseContract)
-    {
-        _leaseContract = leaseContract;
-        AddDomainEvent(new AddedLeaseContract(_objectOwner.Id, this.Id, _leaseContract.Id));
-    }
-
-    public void AddContactPerson(ContactPerson contactPerson)
-    {
-        // there could be rule that checks if for example ScoutObject doesn't have more than 3 ContactPersons
-
-        _contactPersons.Add(contactPerson);
-        AddDomainEvent(new AddedContactPerson(contactPerson.Id, this.Id));
-    }
-
-    public void AddObjectKeeper(ObjectKeeper objectKeeper)
-    {
-        // there could be rule that checks if for example ScoutObject doesn't have more than 3 ObjectKeepers
-
-        _objectKeepers.Add(objectKeeper);
-        AddDomainEvent(new AddedObjectKeeper(objectKeeper.Id, this.Id));
+        _objectOwners.Add(objectOwner);
+        AddDomainEvent(new AddedObjectOwner(objectOwner.Id, this.Id));
     }
 }

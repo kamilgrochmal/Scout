@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Scout.Domain.Repositories;
+using Scout.Infrastructure.EF.Contexts;
 using Scout.Infrastructure.EF.Repositories;
 
 namespace Scout.Infrastructure.EF;
@@ -13,7 +14,7 @@ public static class Extensions
     {
         
         
-        services.AddDbContext<ScoutDbContext>(options =>
+        services.AddDbContext<WriteDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DatabaseConnection"),
                     opt => { opt.CommandTimeout(30); }).LogTo(Console.WriteLine, new[]

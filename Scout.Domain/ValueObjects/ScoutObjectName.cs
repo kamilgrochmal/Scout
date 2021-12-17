@@ -6,7 +6,7 @@ public record ScoutObjectName
 {
     public string Value { get; }
 
-    private ScoutObjectName(string value)
+    public ScoutObjectName(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
@@ -16,9 +16,6 @@ public record ScoutObjectName
         Value = value;
     }
 
-    public static ScoutObjectName Create(string value) => new ScoutObjectName(value);
-    
-    
     
     // convertions 
 

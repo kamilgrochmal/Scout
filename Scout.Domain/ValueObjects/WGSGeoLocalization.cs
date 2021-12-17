@@ -19,14 +19,14 @@ public record WGSGeoLocalization
 
     public static WGSGeoLocalization Create(double? latitude, double? longitude, double? terrainHeight)
     {
-        if (latitude != null && longitude != null)
-        {
-            Regex regexObj = new Regex(@"^([-+]?)([\d]{1,2})(((\.)(\d+)(,)))(\s*)(([-+]?)([\d]{1,3})((\.)(\d+))?)$");
-            var matchResult = regexObj.IsMatch($"{latitude}, {longitude}");
-        
-            if (!matchResult)
-                throw new InvalidCoordinatesException();
-        }
+        // if (latitude != null && longitude != null)
+        // {
+        //     Regex regexObj = new Regex(@"^([-+]?)([\d]{1,2})(((\.)(\d+)(,)))(\s*)(([-+]?)([\d]{1,3})((\.)(\d+))?)$");
+        //     var matchResult = regexObj.IsMatch($"{latitude}, {longitude}");
+        //
+        //     if (!matchResult)
+        //         throw new InvalidCoordinatesException();
+        // }
         
         if (terrainHeight != null)
         {

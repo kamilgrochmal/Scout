@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scout.Domain.Repositories;
 using Scout.Domain.ScoutObjects.Entities;
+using Scout.Infrastructure.EF.Contexts;
 
 namespace Scout.Infrastructure.EF.Repositories;
 
 public class ScoutObjectRepository : IScoutObjectRepository
 {
-    private readonly ScoutDbContext _dbContext;
+    private readonly WriteDbContext _dbContext;
 
-    public ScoutObjectRepository(ScoutDbContext dbContext)
+    public ScoutObjectRepository(WriteDbContext dbContext)
     {
         _dbContext = dbContext;
     }
