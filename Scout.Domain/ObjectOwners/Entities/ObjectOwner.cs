@@ -12,6 +12,7 @@ public class ObjectOwner
     private Address _address;
     private string _urlSite;
     private Person _person;
+    private ScoutObject _scoutObject;
 
     private ObjectOwner()
     {
@@ -28,5 +29,10 @@ public class ObjectOwner
     public static ObjectOwner Create(string companyName, Address address, Person person, string urlSite)
     {
         return new ObjectOwner(companyName, address, person, urlSite);
+    }
+
+    public void AddScoutObject(ScoutObject scoutObject)
+    {
+        _scoutObject = scoutObject;
     }
 }

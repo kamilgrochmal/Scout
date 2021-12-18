@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scout.Application.Common.Services;
+using Scout.Domain.ObjectOwners.Entities;
 using Scout.Domain.Persons.Entities;
 using Scout.Domain.ScoutObjects.Entities;
 using Scout.Infrastructure.EF.Configurations;
@@ -21,6 +22,7 @@ public class WriteDbContext : DbContext
         var configuration = new WriteConfiguration();
         modelBuilder.ApplyConfiguration<ScoutObject>(configuration);
         modelBuilder.ApplyConfiguration<Person>(configuration);
+        modelBuilder.ApplyConfiguration<ObjectOwner>(configuration);
         base.OnModelCreating(modelBuilder);
     }
     
